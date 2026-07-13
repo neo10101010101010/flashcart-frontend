@@ -29,7 +29,7 @@ function Home() {
 
     return (
         <Layout>
-            <h1 className="text-3xl font-bold text-blue-600">
+            <h1 className="text-2xl md:text-3xl font-bold">
                 Listado de Productos
             </h1>
             <ProductTable 

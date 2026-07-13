@@ -47,22 +47,22 @@ function ProductTable({ productos, onProductoEliminado }) {
 
         <div className="overflow-x-auto">
 
-            <div className="flex justify-between items-center mb-4">
+            <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4 mb-4">
 
-                <h2 className="text-2xl font-bold">
+                <h2 className="text-xl md:text-2xl font-bold">
                     Listado de Productos
                 </h2>
 
                 <button
                     onClick={agregarProducto}
-                    className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded"
+                    className="w-full md:w-auto bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded"
                 >
                     + Agregar Producto
                 </button>
 
             </div>
 
-            <table className="min-w-full border border-gray-300 rounded-lg shadow">
+            <table className="w-full min-w-[700px] border border-gray-300 rounded-lg shadow">
 
                 <thead className="bg-gray-100">
 

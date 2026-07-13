@@ -19,7 +19,7 @@ function Navbar() {
 
     return (
 
-        <nav className="bg-blue-600 text-white px-6 py-4 flex justify-between items-center">
+        <nav className="bg-blue-600 text-white px-4 py-4 flex flex-col md:flex-row md:justify-between md:items-center gap-4">
 
             <h1 className="text-2xl font-bold">
                 FlashCart
