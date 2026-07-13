@@ -12,9 +12,9 @@ function Home() {
 
     useEffect(() => {
         cargarProductos();
-        if (user){
-            cargarCarrito()
-        }
+        //if (user){
+            //cargarCarrito()
+        //}
     }, []);
 
     const cargarProductos = async () => {
