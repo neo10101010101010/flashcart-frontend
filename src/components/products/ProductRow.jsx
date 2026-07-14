@@ -48,21 +48,21 @@ function ProductRow({ producto, onAgregarCarrito, onEditar, onEliminar }) {
                     className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-2 rounded"
                     disabled={producto.stock === 0}
                 >
-                    {producto.stock > 0 ? 'Agregar' : 'Sin stock'}
+                    {producto.stock > 0 ? 'Agregar al carrito' : 'Sin stock'}
                 </button>
 
                 <button
                     onClick={() => onEditar(producto.id)}
                     className="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-2 rounded"
                 >
-                    Editar
+                    Editar producto
                 </button>
 
                 <button
                     onClick={() => onEliminar(producto)}
                     className="bg-red-600 hover:bg-red-700 text-white px-3 py-2 rounded"
                 >
-                    Eliminar
+                    Eliminar producto   
                 </button>
 
             </td>
