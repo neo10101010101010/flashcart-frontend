@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 
 import { login } from "../services/authService";
 import useAuthStore from "../store/authStore";
+import { wakeUpServer } from "../services/api";
 
 function Login() {
   const [username, setUsername] = useState("");
@@ -12,6 +13,10 @@ function Login() {
 
   const navigate = useNavigate();
   const loginStore = useAuthStore((state) => state.login);
+
+  useEffect(() => {
+    wakeUpServer().catch(() => {});
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

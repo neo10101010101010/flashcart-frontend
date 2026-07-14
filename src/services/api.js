@@ -6,6 +6,9 @@ const api = axios.create({
 
 console.log(import.meta.env.VITE_API_URL);
 
+export const wakeUpServer = () =>
+    fetch("https://flashcart-backend-lbkd.onrender.com/actuator/health");
+
 api.interceptors.request.use(config => {
     const token = localStorage.getItem('token');
     if (token) {
