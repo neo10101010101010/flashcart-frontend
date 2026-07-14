@@ -1,60 +1,75 @@
 # FlashCart Frontend
 
-Frontend desarrollado con **React + Vite** para la plataforma **FlashCart**, una aplicación de comercio electrónico que permite a los usuarios autenticarse, visualizar productos, administrar un carrito de compras y procesar pedidos consumiendo una API REST desarrollada en Spring Boot.
+Frontend desarrollado con **React + Vite** para la plataforma **FlashCart**, una aplicación de comercio electrónico que consume una API REST desarrollada con Spring Boot.
+
+Permite a los usuarios:
+
+- Registrarse
+- Iniciar sesión mediante JWT
+- Consultar productos
+- Administrar un carrito de compras
+- Procesar pedidos
+- Mantener la sesión mediante LocalStorage
 
 ---
 
-# Stack tecnológico
+# Tecnologías
 
-| Tecnología | Versión | Descripción |
-|------------|---------|-------------|
-| React | 19 | Biblioteca para construir interfaces de usuario |
-| Vite | 7 | Herramienta de construcción y servidor de desarrollo |
-| JavaScript (ES6+) | - | Lenguaje principal del proyecto |
-| React Router DOM | 7 | Navegación entre páginas |
-| Axios | Última | Cliente HTTP para consumir la API REST |
-| Tailwind CSS | 4 | Framework CSS para estilos |
-| React Hook Form *(si aplica)* | - | Manejo de formularios |
-| JWT | - | Autenticación basada en tokens |
+| Tecnología | Versión | Uso |
+|------------|----------|-------------------------------|
+| React | 19 | Desarrollo de interfaces |
+| Vite | 7 | Bundler |
+| JavaScript ES6+ | - | Lenguaje principal |
+| React Router DOM | 7 | Navegación |
+| Axios | Última | Consumo API REST |
+| Tailwind CSS | 4 | Estilos |
+| JWT | - | Autenticación |
 | LocalStorage | - | Persistencia de sesión |
-| Vitest | Última | Framework de pruebas unitarias |
-| React Testing Library | Última | Pruebas de componentes React |
+| Vitest | Última | Pruebas unitarias |
+| React Testing Library | Última | Testing de componentes |
 
 ---
 
-# Arquitectura del proyecto
+# Arquitectura
+
+```
+Usuario
+     │
+     ▼
+React
+     │
+     ▼
+Pages
+     │
+     ▼
+Components
+     │
+     ▼
+Services (Axios)
+     │
+     ▼
+Spring Boot API
+     │
+     ▼
+PostgreSQL
+```
+
+---
+
+# Estructura del proyecto
 
 ```
 flashcart-frontend
 │
-├── public/
+├── public
 │
-├── src/
-│   ├── assets/
-│   │
-│   ├── components/
-│   │      Navbar.jsx
-│   │      ProtectedRoute.jsx
-│   │
-│   ├── pages/
-│   │      Login.jsx
-│   │      Register.jsx
-│   │      Home.jsx
-│   │      ProductoForm.jsx
-│   │      Carrito.jsx
-│   │
-│   ├── services/
-│   │      authService.js
-│   │      productoService.js
-│   │      carritoService.js
-│   │
-│   ├── store/
-│   │      authStore.js
-│   │
-│   ├── test/
-│   │      ProductoForm.test.jsx
-│   │      Carrito.test.jsx
-│   │
+├── src
+│   ├── assets
+│   ├── components
+│   ├── pages
+│   ├── services
+│   ├── store
+│   ├── test
 │   ├── App.jsx
 │   ├── main.jsx
 │   └── index.css
@@ -65,11 +80,19 @@ flashcart-frontend
 └── .env
 ```
 
-## Explicación de carpetas
+---
 
-### src/components
+# Explicación de carpetas
 
-Componentes reutilizables utilizados por toda la aplicación.
+## assets
+
+Contiene imágenes, íconos y recursos estáticos utilizados por la aplicación.
+
+---
+
+## components
+
+Componentes reutilizables utilizados en múltiples vistas.
 
 Ejemplos:
 
@@ -78,9 +101,9 @@ Ejemplos:
 
 ---
 
-### src/pages
+## pages
 
-Contiene las vistas principales.
+Contiene las pantallas principales.
 
 - Login
 - Registro
@@ -90,83 +113,116 @@ Contiene las vistas principales.
 
 ---
 
-### src/services
+## services
 
-Centraliza todas las llamadas HTTP al backend.
+Centraliza todas las llamadas HTTP al backend mediante Axios.
 
 Ejemplos:
 
-- Login
-- Registro
-- Productos
-- Carrito
+- authService
+- productoService
+- carritoService
 
 ---
 
-### src/store
+## store
 
-Contiene el manejo del estado global de autenticación.
+Gestiona el estado global de autenticación.
 
-Actualmente almacena:
+Almacena:
 
-- JWT
-- username
-- userId
+- Token JWT
+- Username
+- UserId
 
 ---
 
-### src/test
+## test
 
-Contiene las pruebas unitarias realizadas con:
+Contiene las pruebas unitarias desarrolladas con:
 
 - Vitest
 - React Testing Library
 
 ---
 
-# Guía de inicio rápido
+# Flujo de autenticación
 
-## 1. Clonar el proyecto
+La aplicación utiliza autenticación basada en JWT.
+
+```
+Usuario
+      │
+      ▼
+Formulario Login
+      │
+      ▼
+Backend Spring Boot
+      │
+      ▼
+JWT
+      │
+      ▼
+LocalStorage
+      │
+      ▼
+ProtectedRoute
+      │
+      ▼
+Pantallas protegidas
+```
+
+El JWT se envía automáticamente en las solicitudes protegidas mediante el encabezado:
+
+```
+Authorization: Bearer <token>
+```
+
+---
+
+# Variables de entorno
+
+## Desarrollo
+
+```properties
+VITE_API_URL=http://localhost:8090/api
+```
+
+## Producción
+
+```properties
+VITE_API_URL=https://flashcart-backend-lbkd.onrender.com/api
+```
+
+---
+
+# Instalación
+
+Clonar repositorio
 
 ```bash
 git clone https://github.com/TU_USUARIO/flashcart-frontend.git
 ```
 
----
-
-## 2. Entrar al proyecto
+Entrar al proyecto
 
 ```bash
 cd flashcart-frontend
 ```
 
----
-
-## 3. Instalar dependencias
+Instalar dependencias
 
 ```bash
 npm install
 ```
 
----
-
-## 4. Configurar variables de entorno
-
-Crear un archivo
-
-```
-.env
-```
-
----
-
-## 5. Ejecutar la aplicación
+Ejecutar
 
 ```bash
 npm run dev
 ```
 
-El proyecto estará disponible en
+La aplicación estará disponible en
 
 ```
 http://localhost:5173
@@ -174,25 +230,47 @@ http://localhost:5173
 
 ---
 
-# Variables de entorno
+# Comunicación con el Backend
 
-Crear un archivo **.env**
+Todas las peticiones HTTP se realizan mediante Axios.
 
-Ejemplo:
+Servicios implementados:
 
-```properties
-VITE_API_URL=http://localhost:8090/api
-```
+- authService
+- productoService
+- carritoService
 
-## Variables
-
-| Variable | Descripción |
-|-----------|-------------|
-| VITE_API_URL | URL base del backend Spring Boot |
+Estos servicios centralizan la comunicación con la API REST y separan la lógica de negocio de la interfaz de usuario.
 
 ---
 
-# Scripts disponibles
+# Protección de rutas
+
+La aplicación utiliza un componente **ProtectedRoute**.
+
+Su función es:
+
+- Verificar si existe un JWT válido.
+- Permitir únicamente el acceso a usuarios autenticados.
+- Redireccionar al Login cuando no exista sesión.
+
+---
+
+# Manejo del estado
+
+La autenticación mantiene la información del usuario mediante LocalStorage.
+
+Información almacenada:
+
+- Token JWT
+- Username
+- UserId
+
+Esto permite conservar la sesión incluso después de recargar la página.
+
+---
+
+# Scripts
 
 Ejecutar proyecto
 
@@ -200,7 +278,7 @@ Ejecutar proyecto
 npm run dev
 ```
 
-Compilar proyecto
+Compilar producción
 
 ```bash
 npm run build
@@ -226,28 +304,87 @@ npx vitest
 
 ---
 
+# Pruebas
+
+El proyecto utiliza:
+
+- Vitest
+- React Testing Library
+
+Actualmente existen pruebas para:
+
+- Formulario de productos
+- Carrito de compras
+
+Las pruebas verifican:
+
+- Renderizado de componentes
+- Eventos del usuario
+- Validación de formularios
+- Llamadas a servicios
+
+---
+
+# Despliegue
+
+Frontend:
+
+- Vercel
+
+Backend:
+
+- Spring Boot desplegado en Render
+
+Base de datos:
+
+- PostgreSQL (Supabase)
+
+---
+
 # Funcionalidades
 
 - Registro de usuarios
 - Inicio de sesión con JWT
-- Protección de rutas
+- Cierre de sesión
+- Protección de rutas privadas
+- Persistencia mediante LocalStorage
 - Listado de productos
 - Crear productos
 - Editar productos
 - Eliminar productos
 - Agregar productos al carrito
+- Actualizar cantidades del carrito
 - Eliminar productos del carrito
 - Procesar compra
-- Persistencia de sesión mediante LocalStorage
-- Consumo de API REST
+- Consumo de API REST mediante Axios
+- Componentes reutilizables
+- Arquitectura modular
+- Pruebas unitarias
 
 ---
 
 # Seguridad
 
+La aplicación implementa las siguientes medidas de seguridad:
+
 - Autenticación mediante JWT.
-- Rutas protegidas.
-- Persistencia del token en LocalStorage.
-- Variables sensibles almacenadas en el archivo `.env`.
+- Protección de rutas privadas.
+- Persistencia segura del token en LocalStorage.
+- Comunicación con endpoints protegidos mediante Bearer Token.
+- Variables sensibles configuradas mediante archivos `.env`.
+
+---
+
+# Mejoras futuras
+
+- Historial de compras
+- Paginación
+- Búsqueda de productos
+- Filtros por categoría
+- Panel de administración
+- Roles de usuario
+- Recuperación de contraseña
+- Pruebas End-to-End
+- Pipeline CI/CD para el frontend
 
 ---

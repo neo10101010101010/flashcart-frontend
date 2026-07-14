@@ -84,7 +84,7 @@ function ProductoForm() {
         <Layout>
 
             <h1 className="text-3xl font-bold mb-6">
-                Nuevo Producto
+                Producto
             </h1>
 
             <form onSubmit={guardarProducto}>
