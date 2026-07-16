@@ -4,7 +4,7 @@ import Home from "../pages/Home";
 import ProtectedRoute from "./ProtectedRoute";
 import ProductoForm from "../pages/ProductoForm";
 import Carrito from "../pages/Carrito";
-import Register from "./pages/Register";
+import Register from "../pages/Register";
 
 function AppRoutes() {
     return (
