@@ -3,10 +3,12 @@ import useCarritoStore from "../../store/carritoStore";
 function ProductRow({ producto, onAgregarCarrito, onEditar, onEliminar }) {
     const { agregarProducto } = useCarritoStore();
 
+    /*
     const handleAgregar = async () => {
         const result = await agregarProducto(producto.id, 1);
         alert(result.message);
     };
+    */
 
     console.log("ProductRow - producto:", producto);
     
@@ -50,20 +52,7 @@ function ProductRow({ producto, onAgregarCarrito, onEditar, onEliminar }) {
                 >
                     {producto.stock > 0 ? 'Agregar al carrito' : 'Sin stock'}
                 </button>
-
-                <button
-                    onClick={() => onEditar(producto.id)}
-                    className="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-2 rounded"
-                >
-                    Editar producto
-                </button>
-
-                <button
-                    onClick={() => onEliminar(producto)}
-                    className="bg-red-600 hover:bg-red-700 text-white px-3 py-2 rounded"
-                >
-                    Eliminar producto   
-                </button>
+                
 
             </td>
 
