@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import ProductRow from "./ProductRow";
 import { eliminarProducto as eliminarProductoService } from "../../services/productosService";
 import useCarritoStore from "../../store/carritoStore";
+import { useEffect } from "react";
 
 function ProductTable({ productos, onProductoEliminado }) {
 
@@ -10,6 +11,11 @@ function ProductTable({ productos, onProductoEliminado }) {
     const items = useCarritoStore((state) => state.items);
     console.log("info items", items);
     const subtotal = useCarritoStore((state) => state.subtotal);
+    const cargarCarrito = useCarritoStore((state) => state.cargarCarrito);
+
+    useEffect(() => {
+        cargarCarrito();
+    }, []);
 
     const agregarProducto = () => {
         navigate("/productos/nuevo");
