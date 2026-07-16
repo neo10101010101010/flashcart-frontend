@@ -3,12 +3,12 @@ import useCarritoStore from "../../store/carritoStore";
 function ProductRow({ producto, onAgregarCarrito, onEditar, onEliminar }) {
     const { agregarProducto } = useCarritoStore();
 
-    /*
+    
     const handleAgregar = async () => {
         const result = await agregarProducto(producto.id, 1);
         alert(result.message);
     };
-    */
+    
 
     console.log("ProductRow - producto:", producto);
     
