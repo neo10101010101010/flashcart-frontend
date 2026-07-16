@@ -15,6 +15,7 @@ function AppRoutes() {
                 <Route path="/productos/nuevo"element={<ProtectedRoute><ProductoForm /> </ProtectedRoute >}/>
                 <Route path="/productos/editar/:id" element={<ProductoForm />} />
                 <Route path="/carrito" element={<ProtectedRoute><Carrito /></ProtectedRoute>} />
+                <Route path="/register" element={<Register />} />
             </Routes>
         </BrowserRouter>
     );

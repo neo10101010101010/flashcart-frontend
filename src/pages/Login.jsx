@@ -106,6 +106,18 @@ function Login() {
           >
             {loading ? "Cargando..." : "Sign in"}
           </button>
+
+          <div className="text-center mt-5">
+              <p className="text-gray-600">
+                  ¿No tienes una cuenta?
+              </p>
+              <Link
+                  to="/register"
+                  className="text-indigo-600 font-semibold hover:underline"
+              >
+                  Crear una cuenta
+              </Link>
+          </div>
         </form>
       </div>
     </div>

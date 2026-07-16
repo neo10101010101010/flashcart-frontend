@@ -11,6 +11,11 @@ export const login = async (username, password) => {
     return response.data;
 };
 
+export const register = async (usuario) => {
+    const response = await api.post("/auth/register", usuario);
+    return response.data;
+};
+
 export const logout = () => {
 
     localStorage.removeItem("token");
