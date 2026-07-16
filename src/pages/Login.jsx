@@ -21,6 +21,17 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
+    
+    if (!username.trim()) {
+        setError("Escriba un nombre de usuario.");
+        return;
+    }
+
+    if (!password.trim()) {
+        setError("Escriba su contraseña.");
+        return;
+    }
+
     setLoading(true);
 
     try {

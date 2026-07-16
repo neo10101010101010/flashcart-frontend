@@ -31,6 +31,21 @@ function ProductoForm() {
 
         e.preventDefault();
 
+        if (!nombre.trim()) {
+            alert("Escriba el nombre del producto.");
+            return;
+        }
+
+        if (!precio || Number(precio) <= 0) {
+            alert("Escriba un precio válido.");
+            return;
+        }
+
+        if (stock === "" || Number(stock) < 0) {
+            alert("Escriba un stock válido.");
+            return;
+        }
+
         try {
             const producto = {
             nombre,
