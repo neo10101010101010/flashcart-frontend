@@ -1,4 +1,5 @@
 import useCarritoStore from "../../store/carritoStore";
+import { useEffect } from "react";
 
 function ProductRow({ producto, onAgregarCarrito, onEditar, onEliminar }) {
     const { agregarProducto } = useCarritoStore();
@@ -6,8 +7,15 @@ function ProductRow({ producto, onAgregarCarrito, onEditar, onEliminar }) {
     
     const handleAgregar = async () => {
         const result = await agregarProducto(producto.id, 1);
+        console.log("Resultado:", result)
         alert(result.message);
     };
+
+    const items = useCarritoStore((state) => state.items);
+
+        useEffect(() => {
+        console.log("Items actualizados:", items);
+    }, [items]);
     
 
     console.log("ProductRow - producto:", producto);

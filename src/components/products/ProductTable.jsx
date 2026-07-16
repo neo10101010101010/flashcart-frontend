@@ -2,20 +2,12 @@ import { useNavigate } from "react-router-dom";
 import ProductRow from "./ProductRow";
 import { eliminarProducto as eliminarProductoService } from "../../services/productosService";
 import useCarritoStore from "../../store/carritoStore";
-import { useEffect } from "react";
 
 function ProductTable({ productos, onProductoEliminado }) {
 
     const navigate = useNavigate();
 
     const items = useCarritoStore((state) => state.items);
-    console.log("info items", items);
-    const subtotal = useCarritoStore((state) => state.subtotal);
-    const cargarCarrito = useCarritoStore((state) => state.cargarCarrito);
-
-    useEffect(() => {
-        cargarCarrito();
-    }, []);
 
     const agregarProducto = () => {
         navigate("/productos/nuevo");
@@ -113,50 +105,50 @@ function ProductTable({ productos, onProductoEliminado }) {
                 </tbody>
                     
             </table>
-
+            
             {items.length > 0 && (
-                <div className="mt-8 border rounded-lg bg-gray-50 p-6">
+            <div className="mt-8 border rounded-lg bg-gray-50 p-6">
 
-                    <h3 className="text-lg font-semibold text-center">
-                        Productos agregados al carrito
-                    </h3>
+                <h3 className="text-lg font-semibold text-center">
+                    Productos agregados al carrito
+                </h3>
 
-                    <ul className="mt-4 space-y-2">
-                        {items.map((item) => (
-                            <li
-                                key={item.id}
-                                className="flex justify-between border-b pb-2"
-                            >
-                                <span>
-                                    {item.nombre}
-                                </span>
-
-                                <span className="font-medium">
-                                    x{item.cantidad}
-                                </span>
-                            </li>
-                        ))}
-                    </ul>
-
-                    <p className="text-center text-gray-600 mt-4">
-                        Total de productos: <strong>{items.length}</strong>
-                    </p>
-
-                    <p className="text-center text-gray-600 mt-2">
-                        Subtotal: <strong>${subtotal.toFixed(2)}</strong>
-                    </p>
-
-                    <div className="mt-5 flex justify-center">
-                        <button
-                            onClick={() => navigate("/carrito")}
-                            className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-lg font-semibold"
+                <ul className="mt-4 space-y-2">
+                    {items.map((item) => (
+                        <li
+                            key={item.id}
+                            className="flex justify-between border-b pb-2"
                         >
-                            Continuar al carrito
-                        </button>
-                    </div>
+                            <span>
+                                {item.nombre}
+                            </span>
 
+                            <span className="font-medium">
+                                x{item.cantidad}
+                            </span>
+                        </li>
+                    ))}
+                </ul>
+
+                <p className="text-center text-gray-600 mt-4">
+                    Total de productos: <strong>{items.length}</strong>
+                </p>
+
+                <p className="text-center text-gray-600 mt-2">
+                    Subtotal: <strong>${subtotal.toFixed(2)}</strong>
+                </p>
+
+                <div className="mt-5 flex justify-center">
+                    <button
+                        onClick={() => navigate("/carrito")}
+                        className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-lg font-semibold"
+                    >
+                        Continuar al carrito
+                    </button>
                 </div>
-            )}            
+
+            </div>
+        )}            
         </div>
 
     );
