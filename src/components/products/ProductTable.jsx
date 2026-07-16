@@ -1,10 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import ProductRow from "./ProductRow";
 import { eliminarProducto as eliminarProductoService } from "../../services/productosService";
+import useCarritoStore from "../../store/carritoStore";
 
 function ProductTable({ productos, onProductoEliminado }) {
 
     const navigate = useNavigate();
+
+    const items = useCarritoStore((state) => state.items);
 
     const agregarProducto = () => {
         navigate("/productos/nuevo");
@@ -100,9 +103,29 @@ function ProductTable({ productos, onProductoEliminado }) {
                         );
                     })}
                 </tbody>
-
+                    
             </table>
 
+            {items.length > 0 && (
+                <div className="mt-8 border rounded-lg bg-gray-50 p-6 text-center">
+
+                    <p className="text-lg font-semibold">
+                        {items.length} producto(s) agregado(s)
+                    </p>
+
+                    <p className="text-gray-600 mt-2">
+                        Subtotal: <strong>${subtotal.toFixed(2)}</strong>
+                    </p>
+
+                    <button
+                        onClick={() => navigate("/carrito")}
+                        className="mt-4 bg-green-600 hover:bg-green-700 text-white px-8 py-3 rounded-lg font-semibold"
+                    >
+                        Continuar al carrito
+                    </button>
+
+                </div>
+            )}            
         </div>
 
     );
