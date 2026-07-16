@@ -27,6 +27,8 @@ function ProductoForm() {
 
     }, [id]);
 
+    const [error, setError] = useState("");
+
     const guardarProducto = async (e) => {
 
         e.preventDefault();
@@ -158,6 +160,12 @@ function ProductoForm() {
                     />
 
                 </div>
+
+                {error && (
+                    <div className="text-red-600 text-sm mb-4 text-center">
+                        {error}
+                    </div>
+                )}
 
                 <button
                     type="submit"
