@@ -8,6 +8,7 @@ function ProductTable({ productos, onProductoEliminado }) {
     const navigate = useNavigate();
 
     const items = useCarritoStore((state) => state.items);
+    const subtotal = useCarritoStore((state) => state.subtotal);
 
     const agregarProducto = () => {
         navigate("/productos/nuevo");
